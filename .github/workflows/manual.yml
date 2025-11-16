@@ -1,0 +1,38 @@
+# RalphGraph AI Agent Launcher
+name: Launch RalphGraph
+
+# Manual workflow trigger
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Launch mode for RalphGraph'
+        required: true
+        default: 'standard'
+        type: choice
+        options:
+          - standard
+          - advanced
+          - demo
+
+# Workflow jobs
+jobs:
+  launch-ralphgraph:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Display RalphGraph configuration
+      run: |
+        echo "🚀 Launching RalphGraph AI Agent..."
+        echo "Mode: ${{ inputs.mode }}"
+        echo "Repository: ${{ github.repository }}"
+        cat agent-config.json
+    
+    - name: RalphGraph launch confirmation
+      run: |
+        echo "✅ RalphGraph is ready!"
+        echo "AI Agent for graphic design and digital products"
+        echo "Check the repository documentation for usage instructions"
